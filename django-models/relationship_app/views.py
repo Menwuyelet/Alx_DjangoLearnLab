@@ -1,3 +1,8 @@
 from django.shortcuts import render
+from django.urls import path
+from . import views
 
-# Create your views here.
+urlpatterns = [
+    path('book_list/', views.book_list, name='book_list'),
+    path('LibraryDetailView/', views.AboutView.as_view(), name='about'),
+]
