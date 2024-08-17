@@ -33,7 +33,7 @@ class Librarian(models.Model):
 class UserProfile(models.Model):
     role = [
         ('Admin', 'Admin'),
-        ('Librarian', 'Librarian'),
+        ('Librarian', 'Librarians'),
         ('Member', 'Member'),
     ]
     user = models.OneToOneField(User, on_delete=models.CASCADE)
