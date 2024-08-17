@@ -4,7 +4,7 @@ from .views import LibraryDetailView
 from views import register
 from .views import LogoutView
 from .views import LoginView
-from .views import admin_view
+from .views import Admin
 from .views import librarian_view
 from .views import member_view
 
