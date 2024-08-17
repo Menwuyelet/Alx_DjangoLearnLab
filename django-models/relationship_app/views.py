@@ -58,7 +58,7 @@ def admin_view(request):
 
 
 def is_librarian(user):
-    return user.userprofile.role == 'Librarian'
+    return user.userprofile.role == 'Librarians'
 
 @user_passes_test(is_librarian)
 def librarian_view(request):
