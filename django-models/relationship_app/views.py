@@ -2,9 +2,11 @@ from django.shortcuts import render
 from .models import Book
 from .models import Library
 from django.views.generic.detail import DetailView
+from django.contrib.auth import login
+from django.contrib.auth import logout
 
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.views import LoginView, LogoutView
+
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 
@@ -28,16 +30,16 @@ class LibraryDetailView(DetailView):
 
 
 
-# Registration View
+
 class RegistrationView(CreateView):
     form_class = UserCreationForm
     template_name = 'templates/register.html'
     success_url = reverse_lazy('login')
 
-# Login View
-class LoginView(LoginView):
+
+class LoginView(Login):
     template_name = 'templates/login.html'
 
-# Logout View
-class LogoutView(LogoutView):
+
+class LogoutView(Logout):
     template_name = 'templates/logout.html'
