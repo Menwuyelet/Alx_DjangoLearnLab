@@ -15,7 +15,7 @@ books_in_library = library.books.all()
 for book in books_in_library:
     print(book.title)
 
-librarian_in_a_library = Librarian.objects.filter(library=library)
+librarian_in_a_library = Librarian.objects.get(library=library)
 
 for librarian in librarian_in_a_library :
     print(library.name)
