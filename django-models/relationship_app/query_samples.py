@@ -7,7 +7,7 @@ books_by_author = Book.objects.filter(author=author)
 for book in books_by_author:
     print(book.title)
 
-
+library_name = 'alx_library'
 library = Library.objects.get(name = library_name)
 
 books_in_library = library.books.all()
