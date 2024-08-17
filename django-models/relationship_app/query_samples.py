@@ -20,4 +20,3 @@ librarian_in_a_library = Librarian.objects.filter(library=library)
 for librarian in librarian_in_a_library :
     print(library.name)
 
-Author.objects.get(name=author_name)
