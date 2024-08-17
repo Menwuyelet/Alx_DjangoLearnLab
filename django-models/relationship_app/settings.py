@@ -68,6 +68,8 @@ TEMPLATES = [
         },
     },
 ]
+LOGIN_REDIRECT_URL = 'home' 
+LOGOUT_REDIRECT_URL = 'home'
 
 WSGI_APPLICATION = 'LibraryProject.wsgi.application'
 
