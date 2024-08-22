@@ -50,3 +50,18 @@
 
 ## Content Security Policy (CSP)
 - used CSP manually 
+
+# Security Review Report
+
+## HTTPS Support
+- **SECURE_SSL_REDIRECT:** All non-HTTPS requests are redirected to HTTPS.
+- **HSTS:** Enforced for 1 year, includes subdomains, and allows preloading.
+
+## Secure Cookies
+- **SESSION_COOKIE_SECURE:** Ensures session cookies are only sent over HTTPS.
+- **CSRF_COOKIE_SECURE:** Ensures CSRF cookies are only sent over HTTPS.
+
+## Secure Headers
+- **X_FRAME_OPTIONS:** Prevents clickjacking.
+- **SECURE_CONTENT_TYPE_NOSNIFF:** Prevents MIME sniffing.
+- **SECURE_BROWSER_XSS_FILTER:** Enables XSS filtering.
