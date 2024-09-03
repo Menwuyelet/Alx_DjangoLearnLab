@@ -16,8 +16,8 @@ class BookSerializer(serializers.ModelSerializer):
 
 
 class AuthorSerializer(serializers.ModelSerializer):
-    books = BookSerializer(many=True, read_only=True) ## this nestes the Book serializer in side of the author serializer
+    book_title = serializers.CharField(source = 'Book.title') ## this nestes the Book serializer in side of the author serializer
 
     class Meta:
         model = Author
-        fields = ['id', 'name', 'books'] ## lists the fields to be serialized including the book_title.
+        fields = ['id', 'name', 'book_title'] ## lists the fields to be serialized including the book_title.
