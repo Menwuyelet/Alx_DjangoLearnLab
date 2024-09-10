@@ -25,4 +25,4 @@ def profile(request):
             return redirect('profile')
     else:
         form = UserChangeForm(instance=request.user)
-    return render(request, 'registration/profile.html', {'form': form})
+    return render(request, 'blog/profile.html', {'form': form})
