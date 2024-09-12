@@ -1,0 +1,3 @@
+- in the blog app i used the biultin login and logout view to implment login and logout views. and provided the login.html and logout.html to display the views.
+- i extended the createUserForm and updateUserForm to create custom user creation view including email field and profile update view including email field.
+-i provided the html files and css file to style the templates.
