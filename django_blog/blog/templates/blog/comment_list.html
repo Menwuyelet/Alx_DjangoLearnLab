@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Comments
+{% endblock %}
+
+{% block content %}
+    {% for comment in comments %}
+        <div class="comment">
+            <p>{{ comment.content}}</p>
+            <a href="{% url 'delete_comment' post.pk %}">delete the comment</a>
+            <a href="{% url 'edit_comment' post.pk %}">edit the comment</a>
+            <a href="{% url 'post_detail' post.pk %}">back to the post</a>
+        </div>
+    {% endfor %}
+    <a href="{% url 'new_comment' post.pk %}">Add Comment</a>
+{% endblock %}

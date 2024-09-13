@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}
+    add your comment here.
+{% endblock %}
+
+{% block content %}
+    <h2>{{ view.action }} comment</h2>
+    <form method="post">
+        {% csrf_token %} 
+        {{ form.as_p }}
+        <button type="submit">Add</button>
+    </form>
+
+{% endblock %}

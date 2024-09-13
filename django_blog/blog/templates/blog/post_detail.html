@@ -6,4 +6,6 @@
 {% block content %}
     <h1>{{ object.title }} by {{object.authr}} </h1>
     <p>{{ object.description }}</p>
+    <a href="{% url 'comments' post.pk %}">Comments</a>
+    <a href="{% url 'new_comment' post.pk %}">Add Comment</a>
 {% endblock %}
