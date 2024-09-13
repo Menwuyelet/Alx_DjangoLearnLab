@@ -86,7 +86,7 @@ class Delete_post(LoginRequiredMixin, UserPassesTestMixin, DeleteView): # this v
 ## Comment views
 
 
-class Add_comment(LoginRequiredMixin, CreateView): # adds new comment
+class CommentCreateView(LoginRequiredMixin, CreateView): # adds new comment
     model = Comment 
     form_class = CommentForm # takes the 'CommentForm' from .foms.py
     template_name = 'blog/comment_create.html' # renders the 'comment_create.html' from templates/blog
@@ -98,7 +98,7 @@ class list_comment(ListView): # list all the comments under specific post
     template_name = 'blog/comment_list.html' 
     context_object_name = 'comments'
 
-class Update_comment(LoginRequiredMixin, UserPassesTestMixin, UpdateView): # this view is a viewclass that handles the comment editing action it uses the same form as add comment
+class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView): # this view is a viewclass that handles the comment editing action it uses the same form as add comment
     model = Comment
     form_class = CommentForm
     template_name = 'blog/comment_update.html'
@@ -108,7 +108,7 @@ class Update_comment(LoginRequiredMixin, UserPassesTestMixin, UpdateView): # thi
         comment = self.get_object()
         return self.request.user == comment.author
     
-class Delete_comment(LoginRequiredMixin, UserPassesTestMixin, DeleteView): # this view is a viewclass that handles the post deleting action it uses the same form and template as add post
+class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView): # this view is a viewclass that handles the post deleting action it uses the same form and template as add post
     model = Comment 
     template_name = 'blog/comment_delete.html'
     success_url = reverse_lazy('comment_list') 
