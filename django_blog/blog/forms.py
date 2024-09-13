@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
 from django.contrib.auth.models import User  # Using default User model
-
+from .models import Post
 class UserCreation(UserCreationForm):
     email = forms.EmailField(required=True)
 
@@ -15,3 +15,8 @@ class profileUpdate(UserChangeForm):
     class Meta:
         model = User
         fields = ('username', 'email')
+
+class post_form(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ('title', 'content')

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}
+    wellcom to posts page!
+{% endblock %}
+
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content|truncatewords:30 }}</p>
+            <a href="{% url 'post_detail' post.pk %}">Read more</a>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}
+    wellcom to Post-Detail page!
+{% endblock %}
+
+{% block content %}
+    <h1>{{ object.title }} by {{object.authr}} </h1>
+    <p>{{ object.description }}</p>
+{% endblock %}
