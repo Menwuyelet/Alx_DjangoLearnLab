@@ -130,7 +130,18 @@ def search_posts(request): # this function handles the search view
 
     return render (request, 'blog/search_result.html', {'query': query, 'results': results }) # renders the result to search_results.html
 
-def posts_by_tag(request, tag_name): # this function handles filtering posts based on their tags 
-    tag = get_object_or_404(Tag, name=tag_name)  # gets the tag name if it exists or error 404 if it dosen't
-    posts = Post.objects.filter(tags=tag)  # get all the posts with this tag
-    return render(request, 'blog/posts_by_tag.html', {'tag': tag, 'posts': posts}) # renders the posts with that specific tag to posts_by_tag.html
+
+
+class PostByTagListView(ListView):
+    model = Post
+    template_name = 'blog/posts_by_tag.html'
+    context_object_name = 'posts'
+    
+    def get_queryset(self):
+        tag_name = self.kwargs.get('tag_name')
+        return Post.objects.filter(tags__name=tag_name)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tag'] = Tag.objects.get(name=self.kwargs.get('tag_name'))
+        return context
