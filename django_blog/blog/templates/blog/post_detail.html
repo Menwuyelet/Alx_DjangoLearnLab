@@ -6,6 +6,11 @@
 {% block content %}
     <h1>{{ object.title }} by {{object.authr}} </h1>
     <p>{{ object.description }}</p>
+    <p>Tags: 
+        {% for tag in post.tags.all %}
+            <a href="{% url 'posts_by_tag' tag.name %}">{{ tag.name }}</a>{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
     <a href="{% url 'comments' post.pk %}">Comments</a>
     <a href="{% url 'new_comment' post.pk %}">Add Comment</a>
 {% endblock %}

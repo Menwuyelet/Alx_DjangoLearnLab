@@ -1,12 +1,13 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import UserCreation, profileUpdate
 from django.views.generic import CreateView
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
-from .models import Post, Comment
+from .models import Post, Comment, Tag
 from django.urls import reverse_lazy
 from .forms import post_form, CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.db.models import Q
 # Create your views here.
 
 def homeView(request):
@@ -117,3 +118,19 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView): # 
         comment = self.get_object()
         post = post.get_object()
         return self.request.user == post.author or self.request.user == comment.author
+    
+## search  and tag views
+
+def search_posts(request): # this function handles the search view
+    query = request.GET.get('q') # this gets the search query
+    results = [] # this is the list to store the results
+
+    if query:
+        results = Post.objects.filter(Q(title__icontains = query) | Q(content__icontains = query) | Q(tags__name__icontains = query)).distinct() # this filters the posts useing the 'Q' by title, content or tags
+
+    return render (request, 'blog/search_result.html', {'query': query, 'results': results }) # renders the result to search_results.html
+
+def posts_by_tag(request, tag_name): # this function handles filtering posts based on their tags 
+    tag = get_object_or_404(Tag, name=tag_name)  # gets the tag name if it exists or error 404 if it dosen't
+    posts = Post.objects.filter(tags=tag)  # get all the posts with this tag
+    return render(request, 'blog/posts_by_tag.html', {'tag': tag, 'posts': posts}) # renders the posts with that specific tag to posts_by_tag.html
