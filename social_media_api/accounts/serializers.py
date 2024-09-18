@@ -4,7 +4,7 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
 
 
-CustomUser = get_user_model()
+CustomUser = get_user_model().objects.create_user
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
     class Meta:
@@ -37,7 +37,7 @@ class UserLoginSerializer(serializers.Serializer):
 
         user = authenticate(email=email, password=password)
         if user:
-            token, _ = Token.objects.get_or_create(user=user)
+            token, _ = Token.objects.create(user=user)
             data['token'] = token.key
             return data
         else:
