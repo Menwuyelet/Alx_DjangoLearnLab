@@ -44,7 +44,7 @@ class FollowUserView(generics.GenericAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request, username):
-        user_to_follow = CustomUser.objects.all(username=username).first()
+        user_to_follow = CustomUser.objects.all()
         
         if request.user == user_to_follow:
             return Response({"error": "You cannot follow yourself."}, status=status.HTTP_400_BAD_REQUEST)
@@ -60,7 +60,7 @@ class UnfollowUserView(generics.GenericAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request, username):
-        user_to_unfollow = CustomUser.objects.all(username=username).first()
+        user_to_unfollow = CustomUser.objects.all()
         
         if user_to_unfollow not in request.user.following.all():
             return Response({"error": "You are not following this user."}, status=status.HTTP_400_BAD_REQUEST)
