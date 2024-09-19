@@ -66,5 +66,6 @@ class UserFeedView(generics.ListAPIView):
     def get_queryset(self):
         user = self.request.user
         following_users = user.following.all()  
-        queryset = Post.objects.filter(author__in=following_users)  
-        return queryset.order_by('-created_at') 
+        queryset = Post.objects.filter(author__in=following_users).order_by('-created_at') 
+        permissions.IsAuthenticated
+        return queryset
