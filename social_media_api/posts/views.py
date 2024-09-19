@@ -79,15 +79,15 @@ class UserFeedView(generics.ListAPIView):
 class LikePostView(generics.GenericAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
-    def post(self, request, post_id):
+    def post(self, request, pk):
         user = request.user
-        post = get_object_or_404(Post, id=post_id)
+        post = generics.get_object_or_404(Post, pk=pk)
 
         # Check if the user has already liked this post
         if Like.objects.filter(user=user, post=post).exists():
             return Response({"error": "You have already liked this post."}, status=status.HTTP_400_BAD_REQUEST)
 
-        Like.objects.create(user=user, post=post)
+        Like.objects.get_or_create(user=request.user, post=post)
 
         if post.author != user:
             Notification.objects.create(
