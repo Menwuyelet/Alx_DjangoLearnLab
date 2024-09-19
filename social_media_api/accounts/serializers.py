@@ -42,3 +42,20 @@ class UserLoginSerializer(serializers.Serializer):
             return data
         else:
             raise serializers.ValidationError('Invalid credentials')
+    
+
+class UserSerializer(serializers.ModelSerializer):
+    following = serializers.SlugRelatedField(
+        many=True,
+        read_only=True,
+        slug_field='username'
+    )
+    followers = serializers.SlugRelatedField(
+        many=True,
+        read_only=True,
+        slug_field='username'
+    )
+
+    class Meta:
+        model = CustomUser
+        fields = ['id', 'username', 'email', 'bio', 'profile_picture', 'following', 'followers']

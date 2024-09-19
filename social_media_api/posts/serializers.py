@@ -4,8 +4,8 @@ from .models import Post, Comment
 
 
 class PostSerializer(serializers.ModelSerializer):
-    author = serializers.StringRelatedField(queryset=CustomUser.objects.all())
-    comments = serializers.StringRelatedField(many=True, queryset=Comment.objects.all(), required=False, read_only=True)
+    author = serializers.PrimaryKeyRelatedField(queryset=CustomUser.objects.all())
+    comments = serializers.PrimaryKeyRelatedField(many=True, queryset=Comment.objects.all(), required=False)
 
     class Meta:
         model = Post
@@ -18,8 +18,8 @@ class PostSerializer(serializers.ModelSerializer):
         return data
 
 class CommentSerializer(serializers.ModelSerializer):
-    author = serializers.StringRelatedField(queryset=CustomUser.objects.all())
-    post = serializers.StringRelatedField(queryset=Post.objects.all())
+    author = serializers.PrimaryKeyRelatedField(queryset=CustomUser.objects.all())
+    post = serializers.PrimaryKeyRelatedField(queryset=Post.objects.all())
 
     class Meta:
         model = Comment
@@ -30,30 +30,6 @@ class CommentSerializer(serializers.ModelSerializer):
         if not data.get('content'):
              raise serializers.ValidationError({'content': 'Content is required'})
         return data
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
