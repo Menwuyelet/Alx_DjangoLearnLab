@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from accounts.models import CustomUser
 from .models import Post, Comment
+from notifications.models import Notification
+
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -33,6 +35,10 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 
+class NotificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notification
+        fields = ['id', 'actor', 'verb', 'target', 'timestamp', 'read']
 
 
 
