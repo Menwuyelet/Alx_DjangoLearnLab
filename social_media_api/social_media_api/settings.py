@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-j9r2@)mxn%@6ejun3-nr%g%dgx6llrv5nvzuc6$rq0505opwwz
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-
+PORT = os.environ.get('DJANGO_PORT', 8000)  
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = 'DENY'
 SECURE_CONTENT_TYPE_NOSNIFF = True
