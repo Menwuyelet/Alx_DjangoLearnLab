@@ -23,10 +23,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-j9r2@)mxn%@6ejun3-nr%g%dgx6llrv5nvzuc6$rq0505opwwz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_SSL_REDIRECT = True 
 
 # Application definition
 
@@ -42,6 +46,7 @@ INSTALLED_APPS = [
     'accounts',
     'posts',
     'django_filters',
+    'notifications',
 ]
 
 MIDDLEWARE = [
